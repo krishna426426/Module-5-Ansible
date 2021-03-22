@@ -56,7 +56,7 @@ Ansible provides off-the-shelf modules to manage a variety of servers, applicati
 
 Ansible can be installed on any computer running the most popular Linux distributions like Red Hat, CentOS, Fedora, Debian, or Ubuntu, using either the OS package manager or via the Python package manager (pip).
 
-For instance, you can install latest Ansible on an Ubuntu server with the following command. In this lab Ansible has been already pre-installed in the Ubuntu Server. You don't need to execute the following the following command its just for reference.
+For instance, you can install latest Ansible on an Ubuntu server with the following command. In this lab Ansible has been already pre-installed in the Ubuntu Server. You don't need to execute  the following command its just for reference.
 
 ```
 # sudo pip3 install ansible
