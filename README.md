@@ -93,6 +93,12 @@ remote_user = admin
 deprecation_warnings=False
 ```
 
+
+
+<img src="imgs/sublime.png" style="zoom:50%;" />
+
+
+
 Save the file as **ansible.cfg** in CL_Ansible dir as following:
 
 <img src="imgs/ansiblecfg1.png" style="zoom:45%;" />
