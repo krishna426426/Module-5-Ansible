@@ -95,7 +95,7 @@ deprecation_warnings=False
 
 
 
-<img src="imgs/sublime.png" style="zoom:50%;" />
+<img src="imgs/sublime.png" style="zoom:20%;" />
 
 
 
