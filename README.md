@@ -165,13 +165,13 @@ Note: In this lab we are going to use only c9300.
 To make sure the Ansible server can reach all the devices, go to the Ubuntu server, move to the ansible directory:
 
 ```
-auto@programmability:~/ cd CL_Ansible/
+auto@programmability:~/ cd ~/CL_Ansible/
 ```
 
 and use the following Ansible command and provide the device SSH password admin
 
 ```
-auto@programmability:~/CL_Ansible$ ansible ios-xe -m ping -u admin -k
+auto@programmability:~/CL_Ansible$ ansible ios -m ping -u admin -k
 SSH password: Cisco123
 ```
 
@@ -487,9 +487,16 @@ Connect to c9300 in the Windows desktop and verify interface description on gi1/
 
 You should see the following output:
 
-<img src="imgs/netconfdescrun.png" style="zoom:67%;" />
+```
+C9300#sh run int gi 1/0/1
+Building configuration...
 
-
+Current configuration : 95 bytes
+!
+interface GigabitEthernet1/0/1
+ description Managed by Ansible using netconf connection
+end
+```
 
 Step 3. To configure telemetry subscriptions using NETCONF, on the Windows host, open **Sublime Text** from the Start menu, create a new file and enter the following into the window:
 
@@ -562,7 +569,36 @@ Connect to c9300 in the Windows desktop and verify interface description on gi1/
 
 You should see the following output:
 
-<img src="imgs/telemetryrun.png" style="zoom:75%;" />
+```
+C9300#sh run | sec tele
+telemetry ietf subscription 101
+ encoding encode-kvgpb
+ filter xpath /process-cpu-ios-xe-oper:cpu-usage/cpu-utilization/five-seconds
+ stream yang-push
+ update-policy periodic 30000
+ receiver ip address 10.1.1.3 57500 protocol grpc-tcp
+telemetry ietf subscription 201
+ encoding encode-kvgpb
+ filter xpath /process-cpu-ios-xe-oper:cpu-usage/cpu-utilization/five-seconds
+ source-address 10.1.1.5
+ stream yang-push
+ update-policy periodic 6000
+ receiver ip address 10.1.1.3 57501 protocol grpc-tls profile grpc-dial-out-tls
+telemetry ietf subscription 501
+ encoding encode-kvgpb
+ filter xpath /process-cpu-ios-xe-oper:cpu-usage/cpu-utilization/five-seconds
+ source-address 10.1.1.5
+ stream yang-push
+ update-policy periodic 1000
+ receiver ip address 10.1.1.3 57500 protocol grpc-tcp
+telemetry ietf subscription 502
+ encoding encode-kvgpb
+ filter xpath /if:interfaces-state/interface[name=\"GigabitEthernet1/0/24\"]/statistics
+ source-address 10.1.1.5
+ stream yang-push
+ update-policy periodic 1000
+ receiver ip address 10.1.1.3 57500 protocol grpc-tcp
+```
 
 ## Conclusion
 
