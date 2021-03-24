@@ -84,6 +84,8 @@ The Ansible configuration file stores the default configs used by all Playbooks.
 
 Step 2. On the Windows host, open **Sublime Text 3** from the Start menu, create a new file and enter the following into the window:
 
+<img src="imgs/sublime.png" style="zoom:30%;" />
+
 ```
 [defaults]
 inventory = ./hosts
@@ -92,10 +94,6 @@ roles_path = ./
 remote_user = admin
 deprecation_warnings=False
 ```
-
-
-
-<img src="imgs/sublime.png" style="zoom:30%;" />
 
 
 
